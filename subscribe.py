@@ -3,8 +3,8 @@ from celery_init import AutomateDispatch
 
 import json
 
-project_id = "emailer-457115"
-subscription_id = "automate-sub"
+project_id = "!!!!"
+subscription_id = "!!!"
 
 subscriber = pubsub_v1.SubscriberClient()
 subscription_path = subscriber.subscription_path(project_id, subscription_id)
