@@ -11,7 +11,7 @@ def Task(sender, forwardTo):
        db = client['celeryConnect']
        collection = db['mobileDeviceConfig']
     #    collection.insert_one({"sender":sender, "forwardTo":forwardTo})
-       data = collection.find_one({"email": { "$eq": "ksiriguppa@gmail.com" }})
+       data = collection.find_one({"email": { "$eq": "test@gmail.com" }})
        print(data["FCMToken"])
       
     except Exception as error:
@@ -26,7 +26,7 @@ def AutomateDispatch(data):
         FCMCollection = db['mobileDeviceConfig']
         collection.insert_one({"message": data, "status": "latest"})
         params = {"startHistoryId":data}
-        headers = {"Authorization": "Bearer ya29.a0AW4Xtxhx-dAaQwPNqj0T8gl4_jLMilDrb3AFtHzKyJptQfWnTNBoRrc0XD8d9FQwvYB9fqdZ_bm53NRP7Bw0A84rLxRRYxjSpMB2jYpRT6foRGo6WKX_feIpRGkQ4s2jw0_D8XBzSWASsw5vF84L6IiTXYbcuvtVmCHYLj7EzQaCgYKARESARcSFQHGX2Mix2pl6g3UQeXhBET3nZ-ezQ0177"}
+        headers = {"Authorization": "Bearer "}
         r = requests.get("https://www.googleapis.com/oauth2/v3/userinfo", headers=headers)
         if r.status_code == 200:
             response = r.json()
@@ -47,7 +47,7 @@ def AutomateDispatch(data):
                 for h in headersData:
                     if h['name'] == "From":
                         if loggedInUser in h['value']:
-                            data = FCMCollection.find_one({"email": { "$eq": "ksiriguppa@gmail.com" }})
+                            data = FCMCollection.find_one({"email": { "$eq": "test@gmail.com" }})
                             payload = {
                                 **message,
                                 "to":data["FCMToken"]
